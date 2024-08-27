@@ -1,20 +1,4 @@
-/*!
 
-=========================================================
-* Argon Dashboard React - v1.2.4
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2024 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 :root {
   --blue: #5e72e4;
   --indigo: #5603ad;
@@ -14340,6 +14324,9 @@ button.bg-lighter:focus {
 .bg-gradient-default {
   background: linear-gradient(87deg, #172b4d 0, #1a174d 100%) !important;
 }
+.bg-gradient-turn {
+  background: linear-gradient(87deg, #172b4d 0, #1a174d 100%) !important;
+}
 
 .bg-gradient-white {
   background: linear-gradient(87deg, #fff 0, white 100%) !important;
@@ -14641,7 +14628,7 @@ button.section-darker:focus {
 }
 
 .bg-gradient-neutral {
-  background: linear-gradient(87deg, #fff 0, white 100%) !important;
+  background: linear-gradient(87deg, #3c40c6 0, #0fbcf9 100%) !important;
 }
 
 .bg-gradient-darker {
@@ -16326,8 +16313,8 @@ a.btn-icon-only {
   .main-content .container-md,
   .main-content .container-lg,
   .main-content .container-xl {
-    padding-left: 39px !important;
-    padding-right: 39px !important;
+    padding-left: 39px ;
+    padding-right: 39px ;
   }
 }
 
@@ -16585,7 +16572,7 @@ a.btn-icon-only {
 
 .footer {
   background: #f7fafc;
-  padding: 2.5rem 0;
+  padding: 2.5rem 2.5rem;
 }
 .footer .col-footer .heading {
   color: #8898aa;
@@ -21531,3 +21518,49 @@ button:focus,
 }
 
 /*# sourceMappingURL=argon-dashboard-react.css.map */
+
+/* styles.css */
+.card-cold {
+  background: linear-gradient(to right, #b3e5fc, #e0f7fa); /* Gradient từ xanh nhạt đến xanh biển nhạt */
+  color: #000;
+}
+
+.card-warm {
+  background: linear-gradient(to right, #fff3e0, #ffecb3); /* Gradient từ cam nhạt đến vàng nhạt */
+  color: #000;
+}
+
+.card-hot {
+  background: linear-gradient(to right, #ffccbc, #ffab91); /* Gradient từ hồng nhạt đến cam sáng */
+  color: #000;
+}
+
+.card-low-light {
+  background: linear-gradient(to right, #e0f7fa, #b2ebf2); /* Gradient từ xanh biển nhạt đến xanh biển */
+  color: #000;
+}
+
+.card-medium-light {
+  background: linear-gradient(to right, #fffde7, #fff59d); /* Gradient từ vàng nhạt đến vàng sáng */
+  color: #000;
+}
+
+.card-high-light {
+  background: linear-gradient(to right, #fff8e1, #ffecb3); /* Gradient từ vàng sáng đến cam nhạt */
+  color: #000;
+}
+
+.card-dry {
+  background: linear-gradient(to right, #f1f8e9, #dcedc8); /* Gradient từ xanh lá nhạt đến xanh lá */
+  color: #000;
+}
+
+.card-normal-humidity {
+  background: linear-gradient(to right, #e8f5e9, #a5d6a7); /* Gradient từ xanh lá nhạt đến xanh lá vừa */
+  color: #000;
+}
+
+.card-humid {
+  background: linear-gradient(to right, #e1f5fe, #b3e5fc); /* Gradient từ xanh nước nhạt đến xanh biển nhạt */
+  color: #000;
+}

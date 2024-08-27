@@ -1,73 +1,61 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.2.4
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2024 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import { useState } from "react";
-// node.js library that concatenates classes (strings)
-import classnames from "classnames";
-// javascipt plugin for creating charts
-import Chart from "chart.js";
-// react plugin used to create charts
-import { Line, Bar } from "react-chartjs-2";
-// reactstrap components
-import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  NavItem,
-  NavLink,
-  Nav,
-  Progress,
-  Table,
-  Container,
-  Row,
-  Col,
-} from "reactstrap";
 
-// core components
-import {
-  chartOptions,
-  parseOptions,
-  chartExample1,
-  chartExample2,
-} from "variables/charts.js";
+import { Line } from "react-chartjs-2";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import { Card, CardHeader, CardBody, Container, Row, Col } from "reactstrap";
+
+import { lineChartData, lineChartOptionsDashboard } from "variables/charts.js";
 
 import Header from "components/Headers/Header.js";
+import { lineChartDataLight } from "variables/charts";
 
 const Index = (props) => {
-  const [activeNav, setActiveNav] = useState(1);
-  const [chartExample1Data, setChartExample1Data] = useState("data1");
+  // const [activeNav, setActiveNav] = useState(1);
 
-  if (window.Chart) {
-    parseOptions(Chart, chartOptions());
-  }
-
-  const toggleNavs = (e, index) => {
-    e.preventDefault();
-    setActiveNav(index);
-    setChartExample1Data("data" + index);
+  const [isActive1, setIsActive1] = useState(false);
+  const [isActive2, setIsActive2] = useState(false);
+  const [isActive3, setIsActive3] = useState(false);
+  const toggleIcon1 = () => {
+    setIsActive1(!isActive1);
   };
+  const toggleIcon2 = () => {
+    setIsActive2(!isActive2);
+  };
+  const toggleIcon3 = () => {
+    setIsActive3(!isActive3);
+  };
+
   return (
     <>
       <Header />
       {/* Page content */}
-      <Container className="mt--7" fluid>
+      <Container
+        className="mt-3"
+        fluid
+        style={{ paddingLeft: "15px", paddingRight: "5px" }}
+      >
         <Row>
-          <Col className="mb-5 mb-xl-0" xl="8">
+          <Col className="mb-5 mb-xl-0 pl-0" xl="5">
+            <Card className="bg-gradient-default shadow">
+              <CardHeader className="bg-transparent">
+                <Row className="align-items-center">
+                  <div className="col-8">
+                    <h6 className="text-uppercase text-light ls-1 mb-1">
+                      Overview
+                    </h6>
+                    <h2 className="text-white mb-0">Temperature & Humidity</h2>
+                  </div>
+                </Row>
+              </CardHeader>
+              <CardBody>
+                <Line
+                  data={lineChartData}
+                  options={lineChartOptionsDashboard}
+                />
+              </CardBody>
+            </Card>
+          </Col>
+          <Col className="mb-5 mb-xl-0 pl-0" xl="5">
             <Card className="bg-gradient-default shadow">
               <CardHeader className="bg-transparent">
                 <Row className="align-items-center">
@@ -75,258 +63,131 @@ const Index = (props) => {
                     <h6 className="text-uppercase text-light ls-1 mb-1">
                       Overview
                     </h6>
-                    <h2 className="text-white mb-0">Sales value</h2>
-                  </div>
-                  <div className="col">
-                    <Nav className="justify-content-end" pills>
-                      <NavItem>
-                        <NavLink
-                          className={classnames("py-2 px-3", {
-                            active: activeNav === 1,
-                          })}
-                          href="#pablo"
-                          onClick={(e) => toggleNavs(e, 1)}
-                        >
-                          <span className="d-none d-md-block">Month</span>
-                          <span className="d-md-none">M</span>
-                        </NavLink>
-                      </NavItem>
-                      <NavItem>
-                        <NavLink
-                          className={classnames("py-2 px-3", {
-                            active: activeNav === 2,
-                          })}
-                          data-toggle="tab"
-                          href="#pablo"
-                          onClick={(e) => toggleNavs(e, 2)}
-                        >
-                          <span className="d-none d-md-block">Week</span>
-                          <span className="d-md-none">W</span>
-                        </NavLink>
-                      </NavItem>
-                    </Nav>
+                    <h2 className="text-white mb-0">Light</h2>
                   </div>
                 </Row>
               </CardHeader>
               <CardBody>
                 {/* Chart */}
-                <div className="chart">
-                  <Line
-                    data={chartExample1[chartExample1Data]}
-                    options={chartExample1.options}
-                    getDatasetAtEvent={(e) => console.log(e)}
-                  />
-                </div>
+                <Line
+                  data={lineChartDataLight}
+                  options={lineChartOptionsDashboard}
+                />
               </CardBody>
             </Card>
           </Col>
-          <Col xl="4">
-            <Card className="shadow">
-              <CardHeader className="bg-transparent">
-                <Row className="align-items-center">
-                  <div className="col">
-                    <h6 className="text-uppercase text-muted ls-1 mb-1">
-                      Performance
-                    </h6>
-                    <h2 className="mb-0">Total orders</h2>
-                  </div>
-                </Row>
-              </CardHeader>
-              <CardBody>
-                {/* Chart */}
-                <div className="chart">
-                  <Bar
-                    data={chartExample2.data}
-                    options={chartExample2.options}
+
+          <Col xl="2" className="pl-0">
+            <Card
+              className="shadow py-3"
+              style={{
+                backgroundColor: "#f5f6fa",
+                height: "30%",
+                border: "2px solid #ccc", // Add a 2px solid border with color #ccc
+                borderRadius: "8px",
+              }}
+            >
+              <Row className="align-items-center h-100">
+                <div className="col ml-2">
+                  <button
+                    onClick={toggleIcon1}
+                    style={{ background: "none", border: "none" }}
+                  >
+                    <i
+                      className={`fas ${
+                        isActive1 ? "fa-toggle-on" : "fa-toggle-off"
+                      }`}
+                      style={{
+                        fontSize: "50px",
+                        color: isActive1 ? "#ff6348" : "#696969",
+                      }}
+                    ></i>
+                  </button>
+                </div>
+                <div className="icon text-white rounded-circle shadow mr-4">
+                  <i
+                    className="fa-solid fa-lightbulb"
+                    style={{
+                      fontSize: "50px",
+                      color: isActive1 ? "#feca57" : "#696969",
+                    }}
+                  ></i>
+                </div>
+              </Row>
+            </Card>
+            <Card
+              className="shadow my-3 py-3"
+              style={{
+                backgroundColor: "#f5f6fa",
+                height: "30%",
+                border: "2px solid #ccc", // Add a 2px solid border with color #ccc
+                borderRadius: "8px",
+              }}
+            >
+              <Row className="align-items-center h-100">
+                <div className="col ml-2">
+                  <button
+                    onClick={toggleIcon2}
+                    style={{ background: "none", border: "none" }}
+                  >
+                    <i
+                      className={`fas ${
+                        isActive2 ? "fa-toggle-on" : "fa-toggle-off"
+                      }`}
+                      style={{
+                        fontSize: "50px",
+                        color: isActive2 ? "#ff6348" : "#696969",
+                      }}
+                    ></i>
+                  </button>
+                </div>
+                <div className="icon icon-shapetext-white  shadow mr-4">
+                  <i
+                    class="fa-solid fa-temperature-low"
+                    style={{
+                      fontSize: "50px",
+                      color: isActive2 ? "#EA2027" : "#696969",
+                    }}
                   />
                 </div>
-              </CardBody>
+              </Row>
             </Card>
-          </Col>
-        </Row>
-        <Row className="mt-5">
-          <Col className="mb-5 mb-xl-0" xl="8">
-            <Card className="shadow">
-              <CardHeader className="border-0">
-                <Row className="align-items-center">
-                  <div className="col">
-                    <h3 className="mb-0">Page visits</h3>
-                  </div>
-                  <div className="col text-right">
-                    <Button
-                      color="primary"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                      size="sm"
-                    >
-                      See all
-                    </Button>
-                  </div>
-                </Row>
-              </CardHeader>
-              <Table className="align-items-center table-flush" responsive>
-                <thead className="thead-light">
-                  <tr>
-                    <th scope="col">Page name</th>
-                    <th scope="col">Visitors</th>
-                    <th scope="col">Unique users</th>
-                    <th scope="col">Bounce rate</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">/argon/</th>
-                    <td>4,569</td>
-                    <td>340</td>
-                    <td>
-                      <i className="fas fa-arrow-up text-success mr-3" /> 46,53%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">/argon/index.html</th>
-                    <td>3,985</td>
-                    <td>319</td>
-                    <td>
-                      <i className="fas fa-arrow-down text-warning mr-3" />{" "}
-                      46,53%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">/argon/charts.html</th>
-                    <td>3,513</td>
-                    <td>294</td>
-                    <td>
-                      <i className="fas fa-arrow-down text-warning mr-3" />{" "}
-                      36,49%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">/argon/tables.html</th>
-                    <td>2,050</td>
-                    <td>147</td>
-                    <td>
-                      <i className="fas fa-arrow-up text-success mr-3" /> 50,87%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">/argon/profile.html</th>
-                    <td>1,795</td>
-                    <td>190</td>
-                    <td>
-                      <i className="fas fa-arrow-down text-danger mr-3" />{" "}
-                      46,53%
-                    </td>
-                  </tr>
-                </tbody>
-              </Table>
-            </Card>
-          </Col>
-          <Col xl="4">
-            <Card className="shadow">
-              <CardHeader className="border-0">
-                <Row className="align-items-center">
-                  <div className="col">
-                    <h3 className="mb-0">Social traffic</h3>
-                  </div>
-                  <div className="col text-right">
-                    <Button
-                      color="primary"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                      size="sm"
-                    >
-                      See all
-                    </Button>
-                  </div>
-                </Row>
-              </CardHeader>
-              <Table className="align-items-center table-flush" responsive>
-                <thead className="thead-light">
-                  <tr>
-                    <th scope="col">Referral</th>
-                    <th scope="col">Visitors</th>
-                    <th scope="col" />
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">Facebook</th>
-                    <td>1,480</td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <span className="mr-2">60%</span>
-                        <div>
-                          <Progress
-                            max="100"
-                            value="60"
-                            barClassName="bg-gradient-danger"
-                          />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Facebook</th>
-                    <td>5,480</td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <span className="mr-2">70%</span>
-                        <div>
-                          <Progress
-                            max="100"
-                            value="70"
-                            barClassName="bg-gradient-success"
-                          />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Google</th>
-                    <td>4,807</td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <span className="mr-2">80%</span>
-                        <div>
-                          <Progress max="100" value="80" />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Instagram</th>
-                    <td>3,678</td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <span className="mr-2">75%</span>
-                        <div>
-                          <Progress
-                            max="100"
-                            value="75"
-                            barClassName="bg-gradient-info"
-                          />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">twitter</th>
-                    <td>2,645</td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <span className="mr-2">30%</span>
-                        <div>
-                          <Progress
-                            max="100"
-                            value="30"
-                            barClassName="bg-gradient-warning"
-                          />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </Table>
+            <Card
+              className="shadow py-3"
+              style={{
+                backgroundColor: "#f5f6fa",
+                height: "30%",
+                border: "2px solid #ccc", // Add a 2px solid border with color #ccc
+                borderRadius: "8px",
+              }}
+            >
+              <Row className="align-items-center h-100">
+                <div className="col ml-2">
+                  <button
+                    onClick={toggleIcon3}
+                    style={{ background: "none", border: "none" }}
+                  >
+                    <i
+                      className={`fas ${
+                        isActive3 ? "fa-toggle-on" : "fa-toggle-off"
+                      }`}
+                      style={{
+                        fontSize: "50px",
+                        color: isActive3 ? "#ff6348" : "#696969",
+                      }}
+                    ></i>
+                  </button>
+                </div>
+                <div className="icon text-white rounded-circle shadow mr-4">
+                  <i
+                    class="fa-solid fa-droplet"
+                    style={{
+                      fontSize: "50px",
+                      color: isActive3 ? "#4bcffa" : "#696969",
+                    }}
+                  />
+                </div>
+              </Row>
             </Card>
           </Col>
         </Row>
