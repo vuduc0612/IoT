@@ -2,7 +2,16 @@ import { Row, Col, Nav, NavItem, NavLink } from "reactstrap";
 
 const Footer = () => {
   return (
-    <footer className="footer bg-gradient-neutral" style={{marginLeft: '0px', paddingRight: '0px'}}>
+    <footer
+      className="footer bg-gradient-neutral"
+      style={{
+        position: "fixed",
+        bottom: "0",
+        width: "100%",
+        marginLeft: "0px",
+        paddingRight: "0px",
+      }}
+    >
       <Row className="align-items-center justify-content-xl-between">
         <Col xl="6">
           <div className="copyright text-center text-xl-left text-muted">
